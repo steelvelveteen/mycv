@@ -1,0 +1,26 @@
+### Post Create User
+POST http://localhost:3000/auth/signup
+Content-Type: application/json
+
+{
+	"email" : "noelia.serrano@gmail.com",
+	"password" : "pa$$word2"
+} 
+
+### find user by id
+GET http://localhost:3000/auth/3
+
+### find all users by email
+GET http://localhost:3000/auth?email=joeyvico@gmail.com
+
+### remove user by ie
+DELETE http://localhost:3000/auth/466
+
+### Update user
+PATCH http://localhost:3000/auth/3
+Content-Type: application/json
+
+{
+	"email": "maria.noelia@gmail.com"
+}
+
