@@ -30,6 +30,8 @@ describe('AuthService', () => {
         return Promise.resolve(user);
       },
     };
+
+    // Setup the test module
     const module = await Test.createTestingModule({
       providers: [
         AuthService,
@@ -40,7 +42,7 @@ describe('AuthService', () => {
       ],
     }).compile();
 
-    service = module.get(AuthService);
+    service = module.get<AuthService>(AuthService);
   });
 
   it('can create instance of auth service', async () => {

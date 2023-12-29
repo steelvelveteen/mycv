@@ -7,6 +7,13 @@ import {
   AfterRemove,
 } from 'typeorm';
 
+/**
+ * @description user entity typeorm
+ *
+ * @property id number
+ * @property email string
+ * @property password string
+ */
 @Entity()
 export class User {
   @PrimaryGeneratedColumn()

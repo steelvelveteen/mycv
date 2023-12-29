@@ -16,11 +16,11 @@ import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { UsersService } from './users.service';
 import { UserDto } from './dto/user.dto';
-import { Serialize } from 'src/interceptors';
+import { Serialize } from '../interceptors';
 import { AuthService } from './auth.service';
 import { CurrentUser } from './decorators';
 import { User } from './user.entity';
-import { AuthGuard } from 'src/guards/auth.guard';
+import { AuthGuard } from '../guards/auth.guard';
 
 @Controller('auth')
 @Serialize(UserDto)
@@ -66,8 +66,8 @@ export class UsersController {
   }
 
   @Get()
-  findAllUsers(@Query('email') email: string) {
-    return this.usersService.find(email);
+  async findAllUsers(@Query('email') email: string) {
+    return await this.usersService.find(email);
   }
 
   @Delete('/:id')
