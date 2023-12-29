@@ -13,9 +13,11 @@ export class UsersService {
     const user = this.userRepository.create({ email, password });
 
     this.userRepository.save(user);
+    return user;
   }
 
   findOne(id: number) {
+    if (!id) return null;
     return this.userRepository.findOneBy({ id });
   }
 

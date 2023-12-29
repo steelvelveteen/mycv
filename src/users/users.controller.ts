@@ -8,27 +8,61 @@ import {
   Post,
   Query,
   NotFoundException,
-  UseInterceptors,
-  ClassSerializerInterceptor,
+  Session,
+  UseGuards,
+  // UseInterceptors,
 } from '@nestjs/common';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { UsersService } from './users.service';
+import { UserDto } from './dto/user.dto';
+import { Serialize } from 'src/interceptors';
+import { AuthService } from './auth.service';
+import { CurrentUser } from './decorators';
+// import { CurrentUserInterceptor } from './interceptors';
+import { User } from './user.entity';
+import { AuthGuard } from 'src/guards/auth.guard';
 
 @Controller('auth')
+@Serialize(UserDto)
+// @UseInterceptors(CurrentUserInterceptor)
 export class UsersController {
-  constructor(private usersService: UsersService) {}
+  constructor(
+    private readonly usersService: UsersService,
+    private readonly authService: AuthService,
+  ) {}
 
-  @Post('/signup')
-  createUser(@Body() body: CreateUserDto) {
-    this.usersService.create(body.email, body.password);
+  @Get('/whoami')
+  @UseGuards(AuthGuard)
+  whoami(@CurrentUser() user: User) {
+    return user;
+  }
+
+  @Post('/signout')
+  signout(@Session() session: any) {
+    session.userId = null;
+  }
+
+  @Post('/register')
+  async createUser(@Body() body: CreateUserDto, @Session() session: any) {
+    const user = await this.authService.register(body.email, body.password);
+    session.userId = user.id;
+
+    return user;
+  }
+
+  @Post('/login')
+  // Todo maybe create LoginUserDto
+  async login(@Body() body: CreateUserDto, @Session() session: any) {
+    const user = await this.authService.login(body.email, body.password);
+    session.userId = user.id;
+
+    return user;
   }
 
   @Get('/:id')
-  @UseInterceptors(ClassSerializerInterceptor)
   async findUser(@Param('id') id: string) {
     const user = await this.usersService.findOne(parseInt(id));
-    console.log(user);
     if (!user) throw new NotFoundException('User by Id not found');
     return user;
   }

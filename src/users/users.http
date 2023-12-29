@@ -1,14 +1,32 @@
 ### Post Create User
-POST http://localhost:3000/auth/signup
+POST http://localhost:3000/auth/register
 Content-Type: application/json
 
 {
-	"email" : "noelia.serrano@gmail.com",
-	"password" : "pa$$word2"
+	"email" : "joeyvico@gmail.com",
+	"password" : "pa$$word32"
 } 
 
+### Post another User
+POST http://localhost:3000/auth/register
+Content-Type: application/json
+
+{
+	"email" : "noelia.serrano@bbva.es",
+	"password" : "pa$$word$32"
+}
+
+### Login
+POST http://localhost:3000/auth/login
+Content-Type: application/json
+
+{
+	"email": "noelia.serrano@bbva.es",
+	"password": "pa$$word$32"
+}
+
 ### find user by id
-GET http://localhost:3000/auth/3
+GET http://localhost:3000/auth/
 
 ### find all users by email
 GET http://localhost:3000/auth?email=joeyvico@gmail.com
@@ -24,3 +42,8 @@ Content-Type: application/json
 	"email": "maria.noelia@gmail.com"
 }
 
+### Session user id
+GET http://localhost:3000/auth/whoami
+
+### Sesion signout user id
+POST http://localhost:3000/auth/signout
