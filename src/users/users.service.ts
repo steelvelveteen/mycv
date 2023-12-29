@@ -9,7 +9,7 @@ export class UsersService {
     @InjectRepository(User) private userRepository: Repository<User>,
   ) {}
 
-  create(email: string, password: string) {
+  async create(email: string, password: string) {
     const user = this.userRepository.create({ email, password });
 
     this.userRepository.save(user);

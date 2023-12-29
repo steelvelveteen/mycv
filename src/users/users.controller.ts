@@ -19,13 +19,11 @@ import { UserDto } from './dto/user.dto';
 import { Serialize } from 'src/interceptors';
 import { AuthService } from './auth.service';
 import { CurrentUser } from './decorators';
-// import { CurrentUserInterceptor } from './interceptors';
 import { User } from './user.entity';
 import { AuthGuard } from 'src/guards/auth.guard';
 
 @Controller('auth')
 @Serialize(UserDto)
-// @UseInterceptors(CurrentUserInterceptor)
 export class UsersController {
   constructor(
     private readonly usersService: UsersService,
