@@ -8,7 +8,8 @@ import { Observable } from 'rxjs';
 import { UsersService } from '../users.service';
 
 /**
- * @description extracts information regarding the user such as userId (from within request.session) which then uses to fetch user object and stores in request.currentUser
+ * Extracts information regarding the user such as userId (from within request.session) which then uses to fetch user object and stores in request.currentUser
+ *
  * @usage globally defined in @see UsersModule
  */
 @Injectable()

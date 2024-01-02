@@ -2,8 +2,7 @@ import { ExecutionContext, createParamDecorator } from '@nestjs/common';
 
 /**
  * @description gets the current logged in user from the
- * request context which is stored by the CurrentUserInterceptor
- * in the request object
+ * request context which is stored by the CurrentUserInterceptor in the session
  * @see CurrentUserInterceptor
  * @returns user User entity
  */

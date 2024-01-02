@@ -8,7 +8,7 @@ import {
 } from 'typeorm';
 
 /**
- * @description user entity typeorm
+ *  User entity typeorm
  *
  * @property id number
  * @property email string
