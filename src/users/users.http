@@ -7,6 +7,15 @@ Content-Type: application/json
 	"password" : "pa$$word32"
 } 
 
+### Post Power User
+POST http://localhost:3000/auth/register
+Content-Type: application/json
+
+{
+	"email" : "admin@gmail.com",
+	"password" : "pa$$word32"
+} 
+
 ### Post another User
 POST http://localhost:3000/auth/register
 Content-Type: application/json
@@ -21,8 +30,8 @@ POST http://localhost:3000/auth/login
 Content-Type: application/json
 
 {
-	"email": "noelia.serrano@bbva.es",
-	"password": "pa$$word$32"
+	"email": "admin@gmail.com",
+	"password": "pa$$word32"
 }
 
 ### find user by id

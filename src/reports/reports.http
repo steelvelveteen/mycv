@@ -6,10 +6,10 @@ Content-Type: application/json
 	"make": "Toyota",
 	"model": "Corolla",
 	"year": 1980,
-	"mileage": 250000,
+	"mileage": 20000,
 	"long": 0,
 	"lat": 0,
-	"price": 5500
+	"price": 3500
 }
 
 ### Create another report
@@ -31,5 +31,9 @@ PATCH http://localhost:3000/reports/5
 Content-Type: application/json
 
 {
-	"approved": true
+	"approved": false
 }
+
+### Get estimates providing query string
+GET http://localhost:3000/reports?make=Toyota&model=Corolla&long=0&lat=0&mileage=250000&year=1980
+Content-Type: application/json
